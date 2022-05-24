@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  width: 1000px;
+  height: 300px;
+  margin: 0 auto;
+  overflow: auto;
+  overflow-x: auto;
+}
+
+/*스크롤바 안보이지만 스크롤시 스크롤 되도록*/
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.leftArrow {
+  width: 100px;
+  height: 100px;
+  background-image: url('../public/icons8-double-left.gif');
+  background-size: cover;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.rightArrow {
+  width: 100px;
+  height: 100px;
+  background-image: url('../public/icons8-double-right.gif');
+  background-size: cover;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.container_out {
+  display: flex;
+  flex-direction: column;
+}
+
+.container_title {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+
+}
+
+.title {
+  display: inline-block;
+  padding: 5px 10px;
+  color: white;
+  background-color: #0056FF;
+  border-radius: 15px;
+}
