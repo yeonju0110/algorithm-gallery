@@ -1,0 +1,59 @@
+@value agBlue from "../../common/colors.css";
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css');
+
+/* 'public/fonts'에 있는 파일로 해봤지만 안돼서 일단 위 웹폰트 사용했어요! */
+/* 실패작..
+@font-face{
+    font-family: 'NanumSquareEB';
+    src: url('../../../public/fonts/NanumSquareEB.ttf');
+}
+*/
+
+.headerBox{
+    height: 94px;
+    display:flex;
+    align-items: center;
+}
+
+.nav__logo{
+    position: absolute;
+    left: 8%;
+}
+
+.agLogoImg{
+    background: url('../../../public/images/agLogo.svg') no-repeat;
+    width: 90px;
+    height: 47px;
+}
+
+.navKey__container{
+    width:565px;
+    height: 51px;
+    padding: 12px 0px;
+    position:absolute;
+    right: 8%;
+
+    display:flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navKey{
+    font-family: 'NanumSquareExtraBold';
+    text-decoration: none;
+    color: agBlue;
+    padding: 10px;
+    font-weight:300;
+    font-size: 12pt;
+}
+
+.userImg{
+    width: 50px;
+    height: 50px;
+    background: url('../../../public/images/profile.png') center/cover no-repeat;
+    border-radius: 50%;
+}
+
+
+
