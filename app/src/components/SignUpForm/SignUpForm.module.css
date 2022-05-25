@@ -1,0 +1,91 @@
+.background {
+  width: 100%;
+  background-color: #F5F5F5;
+  display: flex;
+
+}
+
+.form {
+  display: inline-block;
+  border: 1px solid #D2D2D2;
+  border-radius: 20px;
+  padding: 40px 20px;
+  margin: 100px auto;
+  background-color: white;
+}
+
+.label {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.input {
+  width: 400px;
+  height: 40px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: #ECFFFF;
+
+  font-family: 'Times New Roman', Times, serif;
+
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.row {
+  margin: 50px;
+}
+
+.message {
+  color: red;
+}
+
+.bmessage {
+  color: blue;
+}
+
+.smallarea {
+  display: inline-block;
+  width: 320px;
+  border-radius: 15px 0 0 15px;
+}
+
+.btn_overlap {
+  color: white;
+  background-color: #0056FF;
+  border: none;
+  padding: 10px;
+
+  border-radius: 0 20px 20px 0;
+  height: 40px;
+  width: 80px;
+}
+
+.btn_signup {
+  color: white;
+  background-color: #0056FF;
+  border: none;
+  padding: 10px;
+
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+.row_signup {
+  text-align: center;
+}
+
+.row_login {
+  margin-top: 30px;
+  text-align: center;
+}
