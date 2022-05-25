@@ -1,0 +1,28 @@
+.box {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10%;
+    box-shadow: 10px 5px 5px #D2D2D2;
+    flex-shrink: 0;
+    background-color: #ECFFFF;
+}
+
+.box:hover {
+    filter: grayscale(70%);
+    cursor: pointer;
+}
+
+.lang {
+    font-size: 20px;
+    color: #0056FF;
+}
+
+.algorithm {
+    font-size: 40px;
+    font-weight: 500px;
+    color: #0056FF;
+}
