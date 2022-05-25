@@ -7,7 +7,6 @@ import styles from './main.module.css';
 const Main = ({ item }) => {
     return (
         <div className={styles.feed}>
-            <Header />
             <section className={styles.box}>
                 <p className={styles.text}>뭔가 멋있는 문구</p>
                 <p className={styles.text}>검색하라는 문구</p>
