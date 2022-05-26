@@ -14,8 +14,8 @@ function App({ item }) {
         <Header />
         <Routes>
           <Route path='/' exact element={<Main item={item} />} />
-          <Route path='/login' exact element={<LoginPage />} />
-          <Route path='/signup' exact element={<SignUpPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signup' element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
     </div>
