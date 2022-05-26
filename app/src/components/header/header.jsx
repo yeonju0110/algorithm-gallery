@@ -1,5 +1,6 @@
 import styles from "./header.module.css";
 import { Link } from "react-router-dom";
+import HeaderProfile from "../header_profile/header_profile";
 
 function Header() {
   return (
@@ -14,7 +15,7 @@ function Header() {
         <Link to='/' className={styles.navKey}>Problems</Link>
         <Link to='/' className={styles.navKey}>Community</Link>
         <Link to='/' className={styles.navKey}>Support</Link>
-        <div className={styles.userImg}></div>
+        <HeaderProfile />
       </div>
     </div>
   );
