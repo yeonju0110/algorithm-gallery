@@ -1,23 +1,20 @@
 import styles from "./header.module.css";
-
-
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <div className={styles.headerBox}>
       <div className={styles.nav__logo}>
-        <a href="index.html">
+        <Link to='/'>
           <div className={styles.agLogoImg}></div>
-        </a>
+        </Link>
       </div>
       <div className={styles.navKey__container}>
-        <a href="" className={styles.navKey}>Algorithms</a>
-        <a href="" className={styles.navKey}>Problems</a>
-        <a href="" className={styles.navKey}>Community</a>
-        <a href="" className={styles.navKey}>Support</a>
-        <a href="">
-          <div className={styles.userImg}></div>
-        </a>
+        <Link to='/' className={styles.navKey}>Algorithms</Link>
+        <Link to='/' className={styles.navKey}>Problems</Link>
+        <Link to='/' className={styles.navKey}>Community</Link>
+        <Link to='/' className={styles.navKey}>Support</Link>
+        <div className={styles.userImg}></div>
       </div>
     </div>
   );
