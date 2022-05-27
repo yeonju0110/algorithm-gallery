@@ -14,7 +14,6 @@ function App({ item }) {
         <Header />
         <Routes>
           <Route path='/' exact element={<Main item={item} />} />
-
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignUpPage />} />
         </Routes>

@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from './LoginForm.module.css';
 import { Link } from 'react-router-dom';
 import Item from '../../service/item';
-import { useNavigate } from 'react-router-dom';
 
 const item = new Item(process.env.REACT_APP_ALG_SERVER);
 
 function LoginForm() {
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
 
   const onClickLoginBtn = (e) => {
     e.preventDefault();
@@ -64,7 +62,7 @@ function LoginForm() {
 
 
   if (status == 200) {
-    navigate('/');
+    window.location.href = "/";//리액트에서.. 이거 써도 되겠찌? 모 다른거 있는거 아니겠지???
   }
 
   return (
