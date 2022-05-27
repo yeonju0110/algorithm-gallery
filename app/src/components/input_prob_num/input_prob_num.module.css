@@ -1,0 +1,31 @@
+@value agBlue, agMint from '../../common/colors.css';
+
+.box {
+    display: flex;
+    margin: 20px 0;
+    padding: 9px 15px;
+    width: 210px;
+    background-color: agBlue;
+    box-shadow: 0px 4px 4px #00000025;
+    border-radius: 32.5px;
+}
+
+.probNum,
+.inputBox::placeholder,
+.inputBox {
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    color: agMint;
+}
+
+.inputBox {
+    background-color: agBlue;
+    border: none;
+    width: 100%;
+}
+
+.inputBox:focus{
+    outline:none;
+}
+
