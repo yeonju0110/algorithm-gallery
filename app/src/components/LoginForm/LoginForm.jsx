@@ -51,7 +51,7 @@ function LoginForm() {
   const [status, setStatus] = useState();
 
   const isLogined = async () => {//얘가 지금 프로미스를 반환하는데.. 프로미스를 그냥 값으로 못바꿀까? 
-    let res = await fetch("http://ec2-3-39-190-243.ap-northeast-2.compute.amazonaws.com:8080/users/check")
+    let res = await fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
       .then((r) => {
         setStatus(r.status);
       });
