@@ -1,0 +1,25 @@
+@value agGray from '../../common/colors.css';
+
+.feed {
+    width: 100%;
+}
+
+.box {
+    background-color: agGray;
+    width: 100%;
+    height: 506px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-size: 64px;
+    font-weight: 300;
+    margin: 1rem;
+}
+
+.search {
+    display: flex;
+}

@@ -1,18 +1,26 @@
 import React from 'react';
 import './app.module.css';
-import Field_Tags from './components/Field_Tags/Field_Tags';
-import Field_PostEdit from './components/Field_PostEdit/Field_PostEdit';
-import Field_PostPublish from './components/Field_PostPublish/Field_PostPublish';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import styles from './app.module.css';
+import Main from './components/main/main';
+import LoginPage from './components/LoginForm/LoginForm';
+import SignUpPage from './components/SignUpForm/SignUpForm';
+import Header from './components/header/header';
+import PostView from './components/post_view/post_view';
 
-function App() {
+function App({ modal, item }) {
   return (
-    <>
-      {/* 
-      <Field_Tags />
-      <Field_PostEdit />
-      */}
-      <Field_PostPublish />
-    </>
+    <div className={styles.app}>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/' exact element={<Main item={item} />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signup' element={<SignUpPage />} />
+          <Route path='/p/:no' element={<PostView modal={modal} />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
