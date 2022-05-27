@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../header/header';
 import ItemList from '../item_list/item_list';
+import PostAddIcon from '../post_add_icon/post_add_icon';
 import Search from '../search/search';
 import styles from './main.module.css';
 
@@ -15,6 +16,7 @@ const Main = ({ item }) => {
                     <Search />
                 </div>
             </section>
+            <PostAddIcon />
             <ItemList item={item} />
         </div>
     );
