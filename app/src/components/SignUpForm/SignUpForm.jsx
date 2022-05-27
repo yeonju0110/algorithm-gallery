@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./SignUpForm.module.css";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpForm() {
   const [nickname, setName] = useState("");
@@ -20,6 +21,8 @@ function SignUpForm() {
   const isValidEmail = useRef(false);
   const isNotOverlap = useRef(false);
   const isconFirmedPassword = useRef(false);
+
+  const navigate = useNavigate();
 
 
   const onChagneName = (e) => {
@@ -151,7 +154,7 @@ function SignUpForm() {
 
 
   if (status == 200) {
-    window.location.href = "/";//리액트에서.. 이거 써도 되겠찌? 모 다른거 있는거 아니겠지???
+    navigate('/signup');
   }
 
   return (<div className={styles.background}>
