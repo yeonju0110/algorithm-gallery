@@ -1,5 +1,5 @@
 import styles from "./PostContainerRow.module.css";
-import Post from "./Post";
+import Post from "../Post/Post";
 import { useRef, useEffect, useState } from "react";
 
 function PostContainerRow({ lang }) {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useNavigate } from "react";
 import styles from "./SignUpForm.module.css";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 function SignUpForm() {
   const [nickname, setName] = useState("");
@@ -20,6 +20,8 @@ function SignUpForm() {
   const isValidEmail = useRef(false);
   const isNotOverlap = useRef(false);
   const isconFirmedPassword = useRef(false);
+
+  const navigate = useNavigate();
 
 
   const onChagneName = (e) => {
@@ -129,30 +131,23 @@ function SignUpForm() {
       }).then((res) => {
         if (res.status == 200) {
           alert('회원가입 성공 !');
-          //페이지 이동
+          navigate('/mypage');
         }
       });
     }
   }
 
-  const [status, setStatus] = useState();
 
-  const isLogined = async () => {//얘가 지금 프로미스를 반환하는데.. 프로미스를 그냥 값으로 못바꿀까? 
-    let res = await fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
+  useEffect(() => { // 로그인되있는 상태면 메인페이지로
+
+    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
       .then((r) => {
-        setStatus(r.status);
+        if (r.status == 200) {
+          navigate('/');
+        }
       });
-  }
 
-
-  useEffect(() => {
-    isLogined();
   }, []);
-
-
-  if (status == 200) {
-    window.location.href = "/";//리액트에서.. 이거 써도 되겠찌? 모 다른거 있는거 아니겠지???
-  }
 
   return (<div className={styles.background}>
     <form action="" method="post" className={styles.form} >
