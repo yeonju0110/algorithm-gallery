@@ -64,31 +64,31 @@ function LoginForm() {
   if (status == 200) {
     window.location.href = "/";//리액트에서.. 이거 써도 되겠찌? 모 다른거 있는거 아니겠지???
   }
-  else {
-    return (
-      <div className={styles.background}>
 
-        <form method="post" className={styles.form}>
-          <div className={styles.title}>로그인</div>
-          <div>
-            <label className={styles.label}>아이디</label>
-            <input id="uid" type="text" className={styles.input} required />
-          </div>
-          <div>
-            <label className={styles.label}>비밀번호</label>
-            <input id="upassword" type="password" className={styles.input} required />
-          </div>
+  return (
+    <div className={styles.background}>
 
-          <div className={styles.message}>{message}</div>
-          <div className={styles.row_login}>
-            <input type="submit" value="로그인하기" className={styles.btn_login} onClick={onClickLoginBtn} />
-          </div>
-          <div className={styles.row_signup}><Link to="/signup" className={styles.signup_link}>계정이 없으시다면 여기를 클릭해주세요.</Link></div>
-        </form>
+      <form method="post" className={styles.form}>
+        <div className={styles.title}>로그인</div>
+        <div>
+          <label className={styles.label}>아이디</label>
+          <input id="uid" type="text" className={styles.input} required />
+        </div>
+        <div>
+          <label className={styles.label}>비밀번호</label>
+          <input id="upassword" type="password" className={styles.input} required />
+        </div>
 
-      </div>
-    );
-  }
+        <div className={styles.message}>{message}</div>
+        <div className={styles.row_login}>
+          <input type="submit" value="로그인하기" className={styles.btn_login} onClick={onClickLoginBtn} />
+        </div>
+        <div className={styles.row_signup}><Link to="/signup" className={styles.signup_link}>계정이 없으시다면 여기를 클릭해주세요.</Link></div>
+      </form>
+
+    </div>
+  );
+
 }
 
 export default LoginForm;

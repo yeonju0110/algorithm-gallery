@@ -133,12 +133,26 @@ function SignUpForm() {
         }
       });
     }
-
   }
 
-  useEffect(() => {
+  const [status, setStatus] = useState();
 
-  });
+  const isLogined = async () => {//얘가 지금 프로미스를 반환하는데.. 프로미스를 그냥 값으로 못바꿀까? 
+    let res = await fetch("http://ec2-3-39-190-243.ap-northeast-2.compute.amazonaws.com:8080/users/check")
+      .then((r) => {
+        setStatus(r.status);
+      });
+  }
+
+
+  useEffect(() => {
+    isLogined();
+  }, []);
+
+
+  if (status == 200) {
+    window.location.href = "/";//리액트에서.. 이거 써도 되겠찌? 모 다른거 있는거 아니겠지???
+  }
 
   return (<div className={styles.background}>
     <form action="" method="post" className={styles.form} >
