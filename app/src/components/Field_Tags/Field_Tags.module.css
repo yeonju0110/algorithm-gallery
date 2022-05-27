@@ -1,0 +1,19 @@
+.requiredTags {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 19px 22px;
+    gap: 20px;
+
+    position: absolute;
+    width: 837px;
+    height: 79px;
+    left: 0px;
+    top: 0px;
+
+    /* text_ bold gray */
+
+    background: #343A41;
+}

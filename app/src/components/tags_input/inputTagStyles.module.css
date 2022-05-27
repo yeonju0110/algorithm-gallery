@@ -1,0 +1,60 @@
+.tagInput {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 9px 15px 9px 13px;
+    gap: 10px;
+
+    position: absolute;
+    width: auto;
+    height: 37px;
+    left: 31px;
+    top: 58px;
+
+    /* AG Blue */
+    background: #0056FF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32.5px;
+}
+
+.tagInputText, option, input::placeholder{
+    background:rgba(0, 0, 0, 0);
+    border-width: 0;
+    appearance: none;
+    box-sizing: content-box;
+    /* alg-text */
+
+    width: auto;
+    height: 19px;
+
+
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+
+
+    /* AG Mint */
+
+    color: #ECFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+input:focus{
+    outline:none;
+}
+
+/* select태그 placeholder 역할하는 문구 선택못하게 */
+select option[value=""][disabled]{
+    display:none;
+}
+
