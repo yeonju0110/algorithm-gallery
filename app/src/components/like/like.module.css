@@ -1,0 +1,7 @@
+@value agBlue from '../../common/colors.css';
+
+.heart {
+    color: agBlue;
+    font-size: 16px;
+    cursor: pointer;
+}
