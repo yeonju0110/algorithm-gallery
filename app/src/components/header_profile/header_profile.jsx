@@ -13,7 +13,7 @@ const HeaderProfile = (props) => {
     };
 
     const goPage = e => {
-        if (e.target.innerText === 'logout')
+        if(e.target.innerText === 'logout')
             navigate('/');
         else
             navigate(`/${e.target.innerText}`);
@@ -22,8 +22,8 @@ const HeaderProfile = (props) => {
 
     return (
         <div className={styles.box}>
-            <div onClick={clickProfile} className={isLogin ? `${styles.userImg}` : `${styles.basicImg}`}></div>
-            <div className={isProfile ? `${styles.btnBox}` : `${styles.noneBox}`}>
+            <div onClick={clickProfile} className={isLogin? `${styles.userImg}` : `${styles.basicImg}`}></div>
+            <div className={isProfile? `${styles.btnBox}` : `${styles.noneBox}`}>
                 {!isLogin && (
                     <button className={styles.btn} onClick={goPage}>login</button>
                 )}
