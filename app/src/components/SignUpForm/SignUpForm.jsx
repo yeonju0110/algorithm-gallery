@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useNavigate } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./SignUpForm.module.css";
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignUpForm() {
   const [nickname, setName] = useState("");
