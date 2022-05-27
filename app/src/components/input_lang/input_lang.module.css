@@ -1,0 +1,20 @@
+@value agBlue, agMint from '../../common/colors.css';
+
+.box {
+    margin: 20px;
+    padding: 9px 15px;
+    width: 180px;
+    background-color: agBlue;
+    box-shadow: 0px 4px 4px #00000025;
+    border-radius: 32.5px;
+}
+
+.lang, option {
+    background-color: agBlue;
+    border-width: 0;
+    appearance: none;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    color: agMint;
+}
