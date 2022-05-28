@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@uiw/react-codemirror": "^4.7.0",
+    "@uiw/react-textarea-code-editor": "^2.0.2",
+    "react-codemirror": "^1.0.0"
+  }
+}
