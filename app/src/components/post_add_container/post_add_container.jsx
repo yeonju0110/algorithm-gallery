@@ -1,4 +1,5 @@
 import React from 'react';
+import CodeMirror from '../CodeMirror/CodeMIrror';
 import InputAlg from '../input_alg/input_alg';
 import InputLang from '../input_lang/input_lang';
 import InputProbNum from '../input_prob_num/input_prob_num';
@@ -15,7 +16,7 @@ const PostAddContainer = (props) => {
                         <InputProbNum />
                     </div>
                     <div className={styles.codeInput}>
-                        // write your codes here...
+                        <CodeMirror />
                     </div>
                 </section>
                 <section className={styles.right}>
@@ -26,7 +27,7 @@ const PostAddContainer = (props) => {
                         <textarea
                             className={styles.textInput}
                             placeholder="코드 설명을 입력하세요."
-                            name="postText" id="" cols="30" rows="10"
+                            name="postText" id="" cols="50" rows="10"
                         >
                         </textarea>
                     </div>
