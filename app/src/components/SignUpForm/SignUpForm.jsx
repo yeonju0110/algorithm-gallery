@@ -140,7 +140,9 @@ function SignUpForm() {
 
   useEffect(() => { // 로그인되있는 상태면 메인페이지로
 
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
+    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
+      credentials: "include"
+    })
       .then((r) => {
         if (r.status == 200) {
           navigate('/');

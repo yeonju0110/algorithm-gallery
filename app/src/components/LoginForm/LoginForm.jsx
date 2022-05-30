@@ -11,7 +11,6 @@ function LoginForm() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-
   const onClickLoginBtn = (e) => {
     e.preventDefault();
 
@@ -26,6 +25,7 @@ function LoginForm() {
 
       fetch(`${process.env.REACT_APP_ALG_SERVER}/users/signin`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -39,9 +39,10 @@ function LoginForm() {
           if (response.status == 200) {
             alert("로그인 성공");
             navigate("/mypage");
+            console.log(document.cookie);
 
           }
-          else if (response.status == 401) {
+          else if (response.status == 400) {
             setMessage("잘못된 아이디 혹은 비밀번호 입니다.");
           }
         })
@@ -51,7 +52,9 @@ function LoginForm() {
 
   useEffect(() => { // 로그인되있는 상태면 메인페이지로
 
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
+    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
+      credentials: "include"
+    })
       .then((r) => {
         if (r.status == 200) {
           navigate("/");

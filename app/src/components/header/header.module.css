@@ -1,37 +1,38 @@
 @value agBlue from "../../common/colors.css";
 
-.headerBox{
+.headerBox {
     height: 94px;
-    display:flex;
+    display: flex;
+    background-color: white;
     align-items: center;
 }
 
-.nav__logo{
+.nav__logo {
     position: absolute;
     left: 8%;
 }
 
-.agLogoImg{
+.agLogoImg {
     background: url('../../../public/images/agLogo.svg') no-repeat;
     width: 90px;
     height: 47px;
 }
 
-.navKey__container{
-    width:565px;
+.navKey__container {
+    width: 565px;
     height: 51px;
     padding: 12px 0px;
-    position:absolute;
+    position: absolute;
     right: 8%;
 
-    display:flex;
+    display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.navKey{
-    font-weight:700;
+.navKey {
+    font-weight: 700;
     font-size: 12pt;
     text-decoration: none;
     color: agBlue;

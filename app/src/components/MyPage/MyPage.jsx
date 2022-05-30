@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function MyPage() {
   const navigate = useNavigate();
 
-  useEffect(() => { // 로그인되있는 상태면 메인페이지로
+  useEffect(() => {
 
     fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
       .then((r) => {
