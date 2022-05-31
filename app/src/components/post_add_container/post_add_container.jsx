@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import CodeMirror from '../CodeMirror/CodeMIrror';
 import InputAlg from '../input_alg/input_alg';
 import InputLang from '../input_lang/input_lang';

@@ -8,7 +8,7 @@ const Comment_Input = ({ postid }) => {
         event.preventDefault();
         console.log(textRef.current.value);
 
-        fetch(`${process.env.REACT_APP_ALG_SERVER}/post/registration`, {
+        fetch(`${process.env.REACT_APP_ALG_SERVER}/comment/registration`, {
             method: "POST",
             credentials: "include",
             headers: {

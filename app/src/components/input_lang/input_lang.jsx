@@ -17,11 +17,11 @@ const InputLang = (props) => {
             <select onChange={tagChangeHandler} name="lang" className={styles.lang} value={tag1}>
                 <option value='DEFAULT' disabled># 언어를 선택하세요.</option>
                 <option value='C/C++'>C/C++</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="Python">Python</option>
-                <option value="Java">Java</option>
-                <option value="Swift">Swift</option>
-                <option value="PHP">PHP</option>
+                <option value='JavaScript'>JavaScript</option>
+                <option value='Python'>Python</option>
+                <option value='Java'>Java</option>
+                <option value='Swift'>Swift</option>
+                <option value='PHP'>PHP</option>
             </select>
         </div>
     );
