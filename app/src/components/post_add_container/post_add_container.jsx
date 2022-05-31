@@ -4,8 +4,13 @@ import InputAlg from '../input_alg/input_alg';
 import InputLang from '../input_lang/input_lang';
 import InputProbNum from '../input_prob_num/input_prob_num';
 import styles from './post_add_container.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
+
 
 const PostAddContainer = (props) => {
+    const navigate = useNavigate();
+
     const [algCode, setAlgCode] = useState(``);
     const [text, setText] = useState('');
     const textInput = useRef();
@@ -55,7 +60,7 @@ const PostAddContainer = (props) => {
 
     return (
         <div className={styles.post}>
-            <i className={`${styles.cancel} fa-solid fa-times`}></i>
+            <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => navigate(-1)} />
             <div className={styles.box}>
                 <section className={styles.left}>
                     <div className={styles.leftTag}>

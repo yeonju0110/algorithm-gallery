@@ -6,8 +6,12 @@ import 'moment/locale/ko';
 import CommentList from '../comment_list/comment_list';
 import CommentInput from '../comment_input/comment_input';
 import Like from '../like/like';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
 const PostModal = ({ postModal, comments, likes }) => {
+    const navigate = useNavigate();
+
     const startTime = postModal.post_date;
     const commentLength = Object.keys(comments).length;
 
@@ -17,7 +21,7 @@ const PostModal = ({ postModal, comments, likes }) => {
 
     return (
         <div className={styles.post}>
-            <i className={`${styles.cancel} fa-solid fa-times`}></i>
+            <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => navigate(-1)} />
             <div className={styles.box}>
                 <section className={styles.left}>
                     <ul className={styles.tags}>
