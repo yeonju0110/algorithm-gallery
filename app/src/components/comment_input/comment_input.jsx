@@ -1,12 +1,27 @@
 import React, { useRef } from 'react';
 import styles from './comment_input.module.css';
 
-const Comment_Input = (props) => {
+const Comment_Input = ({ postid }) => {
     const textRef = useRef();
     
     const onSubmit = event => {
         event.preventDefault();
         console.log(textRef.current.value);
+
+        fetch(`${process.env.REACT_APP_ALG_SERVER}/post/registration`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "postid": postid,
+                "text": textRef.current.value
+            })
+        })
+        .then(response => console.log(response.json()))
+        .catch(error => console.log('error', error));
+
         textRef.current.value = '';
     }
 

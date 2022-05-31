@@ -56,7 +56,7 @@ const PostModal = ({ postModal, comments, likes }) => {
                             <CommentList comments={comments} />
                         </div>
                         <div className={styles.commentsInput}>
-                            <CommentInput />
+                            <CommentInput postModal={postModal.postid} />
                         </div>
                     </div>
                 </section>
