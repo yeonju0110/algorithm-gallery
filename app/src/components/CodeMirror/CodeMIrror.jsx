@@ -35,5 +35,3 @@ function CodeMirror({hiAlgCode, tag1}) {
 }
 
 export default CodeMirror;
-
-// js, python, html, 

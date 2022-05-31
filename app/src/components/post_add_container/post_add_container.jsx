@@ -40,22 +40,22 @@ const PostAddContainer = (props) => {
 
     const postSubmit = () => {
         console.log(`algCode: ${algCode}, text: ${text}, tag1: ${tag1}, tag2: ${tag2}, tag3: ${tag3}`);
-        // fetch(`${process.env.REACT_APP_ALG_SERVER}/post/registration`, {
-        //     method: "POST",
-        //     credentials: "include",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         "algCode": algCode,
-        //         "text": text,
-        //         "tag1": tag1,
-        //         "tag2": tag2,
-        //         "tag3": tag3
-        //     })
-        // })
-        // .then(response => console.log(response.json()))
-        // .catch(error => console.log('error', error));
+        fetch(`${process.env.REACT_APP_ALG_SERVER}/post/registration`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "algCode": algCode,
+                "text": text,
+                "tag1": tag1,
+                "tag2": tag2,
+                "tag3": tag3
+            })
+        })
+        .then(response => console.log(response.json()))
+        .catch(error => console.log('error', error));
     };
 
     return (
