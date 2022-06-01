@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./SignUpForm.module.css";
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function SignUpForm() {
   const [nickname, setName] = useState("");
@@ -151,7 +152,14 @@ function SignUpForm() {
 
   }, []);
 
-  return (<div className={styles.background}>
+  return (
+    <motion.div
+      className={styles.background}
+      initial={{ opacity:0 }}
+      animate={{ opacity:1 }}
+      exit={{ opacity:0 }}
+      transition={{ ease: "easeIn", duration: 0.7 }}
+    >
     <form action="" method="post" className={styles.form} >
 
       <div className={styles.title}>회원가입</div>
@@ -187,7 +195,7 @@ function SignUpForm() {
 
       <div className={styles.row_login}><Link to="/login" className={styles.login_link}>이미 계정이 있으시다면 여기를 클릭해주세요.</Link></div>
     </form >
-  </div>
+  </motion.div>
   );
 }
 

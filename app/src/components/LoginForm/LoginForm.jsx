@@ -3,6 +3,7 @@ import styles from './LoginForm.module.css';
 import { Link } from 'react-router-dom';
 import Item from '../../service/item';
 import { useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion';
 
 const item = new Item(process.env.REACT_APP_ALG_SERVER);
 
@@ -65,7 +66,13 @@ function LoginForm() {
 
 
   return (
-    <div className={styles.background}>
+    <motion.div
+      className={styles.background}
+      initial={{ opacity:0 }}
+      animate={{ opacity:1 }}
+      exit={{ opacity:0 }}
+      transition={{ ease: "easeIn", duration: 0.7 }}
+    >
 
       <form method="post" className={styles.form}>
         <div className={styles.title}>로그인</div>
@@ -85,7 +92,7 @@ function LoginForm() {
         <div className={styles.row_signup}><Link to="/signup" className={styles.signup_link}>계정이 없으시다면 여기를 클릭해주세요.</Link></div>
       </form>
 
-    </div>
+    </motion.div>
   );
 
 }
