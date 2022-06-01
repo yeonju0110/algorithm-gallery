@@ -6,7 +6,7 @@ import InputProbNum from '../input_prob_num/input_prob_num';
 import styles from './post_add_container.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 
 const PostAddContainer = (props) => {
     const navigate = useNavigate();
@@ -59,7 +59,13 @@ const PostAddContainer = (props) => {
     };
 
     return (
-        <div className={styles.post}>
+        <motion.div
+            className={styles.post}
+            initial={{ opacity:0 }}
+            animate={{ opacity:1 }}
+            exit={{ opacity:0 }}
+            transition={{ ease: "easeIn", duration: 0.7 }}
+        >
             <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => navigate(-1)} />
             <div className={styles.box}>
                 <section className={styles.left}>
@@ -90,7 +96,7 @@ const PostAddContainer = (props) => {
                     </div>
                 </section>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

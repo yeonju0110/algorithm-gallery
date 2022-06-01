@@ -8,6 +8,7 @@ import CommentInput from '../comment_input/comment_input';
 import Like from '../like/like';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const PostModal = ({ postModal, comments, likes }) => {
     const navigate = useNavigate();
@@ -20,7 +21,13 @@ const PostModal = ({ postModal, comments, likes }) => {
     }
 
     return (
-        <div className={styles.post}>
+        <motion.div
+            className={styles.post}
+            initial={{ opacity:0 }}
+            animate={{ opacity:1 }}
+            exit={{ opacity:0 }}
+            transition={{ ease: "easeIn", duration: 0.7 }}
+        >
             <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => navigate(-1)} />
             <div className={styles.box}>
                 <section className={styles.left}>
@@ -61,7 +68,7 @@ const PostModal = ({ postModal, comments, likes }) => {
                     </div>
                 </section>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
