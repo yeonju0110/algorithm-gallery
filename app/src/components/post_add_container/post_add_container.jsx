@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CodeMirror from '../CodeMirror/CodeMIrror';
 import InputAlg from '../input_alg/input_alg';
 import InputLang from '../input_lang/input_lang';
@@ -17,6 +17,8 @@ const PostAddContainer = (props) => {
     const [tag1, setTag1] = useState('');
     const [tag2, setTag2] = useState('');
     const [tag3, setTag3] = useState('');
+
+    const [next, setNext] = useState(false);
 
     const hiAlgCode = (text) => {
         setAlgCode(text);
@@ -39,6 +41,7 @@ const PostAddContainer = (props) => {
     }
 
     const postSubmit = () => {
+        setNext(!next);
         console.log(`algCode: ${algCode}, text: ${text}, tag1: ${tag1}, tag2: ${tag2}, tag3: ${tag3}`);
         fetch(`${process.env.REACT_APP_ALG_SERVER}/post/registration`, {
             method: "POST",
@@ -54,9 +57,19 @@ const PostAddContainer = (props) => {
                 "tag3": tag3
             })
         })
-        .then(response => console.log(response.json()))
+        .then(response => {
+            console.log(response);
+            if (response.status == 200) {
+                alert("글작성이 완료되었습니다");
+                navigate('/');
+            }
+        })
         .catch(error => console.log('error', error));
     };
+
+    const codeNext = () => {
+        setNext(!next);
+    }
 
     return (
         <motion.div
@@ -67,8 +80,18 @@ const PostAddContainer = (props) => {
             transition={{ ease: "easeIn", duration: 0.7 }}
         >
             <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => navigate(-1)} />
+            {!next?
+                <FontAwesomeIcon icon="fa-solid fa-angles-right" className={styles.next__before} onClick={codeNext} />
+                : <FontAwesomeIcon icon="fa-solid fa-angles-right" className={styles.next} onClick={codeNext} />
+            }
             <div className={styles.box}>
-                <section className={styles.left}>
+                <motion.section
+                    initial={{ opacity:0 }}
+                    animate={{ opacity:1 }}
+                    exit={{ opacity:0 }}
+                    transition={{ ease: "easeIn", duration: 0.7 }}
+                    className={styles.left__before} style={{width: next? '65%': '100%'}}
+                >
                     <div className={styles.leftTag}>
                         <InputLang hiTag1={hiTag1} />
                         <InputProbNum hiTag2={hiTag2} />
@@ -76,8 +99,15 @@ const PostAddContainer = (props) => {
                     <div className={styles.codeInput}>
                         <CodeMirror hiAlgCode={hiAlgCode} tag1={(tag1=='C/C++')? 'c' : tag1} />
                     </div>
-                </section>
-                <section className={styles.right}>
+                </motion.section>
+                <motion.section
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity:1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ ease: "easeIn", duration: 0.7 }}
+                    className={styles.right__before}
+                    style={{display: next? 'flex': 'none'}}
+                >
                     <div className={styles.algTagBox}>
                         <InputAlg hiTag3={hiTag3} />
                     </div>
@@ -94,7 +124,7 @@ const PostAddContainer = (props) => {
                     <div className={styles.submitBox}>
                         <button className={styles.submitBtn} onClick={postSubmit}>PUBLISH</button>
                     </div>
-                </section>
+                </motion.section>
             </div>
         </motion.div>
     );
