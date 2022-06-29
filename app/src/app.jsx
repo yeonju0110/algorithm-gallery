@@ -1,6 +1,6 @@
 import React from 'react';
 import './app.module.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import styles from './app.module.css';
 import Main from './components/main/main';
 import LoginPage from './components/LoginForm/LoginForm';
@@ -14,13 +14,15 @@ function App({ modal, item }) {
     <div className={styles.app}>
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path='/' exact element={<Main item={item} />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/signup' element={<SignUpPage />} />
-          <Route path='/p/:no' element={<PostView modal={modal} />} />
-          <Route path='/a' element={<PostAddContainer />} />
-        </Routes>
+        <Router>
+          <Routes>
+            <Route path='/' exact element={<Main item={item} />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignUpPage />} />
+            <Route path='/p/:no' element={<PostView modal={modal} />} />
+            <Route path='/a' element={<PostAddContainer />} />
+          </Routes>
+        </Router>
       </BrowserRouter>
     </div>
   );

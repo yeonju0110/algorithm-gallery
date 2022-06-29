@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react';
-import CodeMirror from '../CodeMirror/CodeMIrror';
-import InputAlg from '../input_alg/input_alg';
-import InputLang from '../input_lang/input_lang';
-import InputProbNum from '../input_prob_num/input_prob_num';
-import styles from './post_add_container.module.css';
+import CodeMirror from '../components/CodeMirror/CodeMIrror';
+import InputAlg from '../components/input_alg/input_alg';
+import InputLang from '../components/input_lang/input_lang';
+import InputProbNum from '../components/input_prob_num/input_prob_num';
+import styles from '../styles/addpost.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
-const PostAddContainer = (props) => {
-    const navigate = useNavigate();
+const AddPost = (props) => {
+    const router = useRouter();
 
     const [algCode, setAlgCode] = useState(``);
     const [text, setText] = useState('');
@@ -66,7 +66,7 @@ const PostAddContainer = (props) => {
             exit={{ opacity:0 }}
             transition={{ ease: "easeIn", duration: 0.7 }}
         >
-            <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => navigate(-1)} />
+            <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => router.back()} />
             <div className={styles.box}>
                 <section className={styles.left}>
                     <div className={styles.leftTag}>
@@ -100,4 +100,4 @@ const PostAddContainer = (props) => {
     );
 }
 
-export default PostAddContainer;
+export default AddPost;

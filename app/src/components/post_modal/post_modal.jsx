@@ -7,11 +7,9 @@ import CommentList from '../comment_list/comment_list';
 import CommentInput from '../comment_input/comment_input';
 import Like from '../like/like';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const PostModal = ({ postModal, comments, likes }) => {
-    const navigate = useNavigate();
 
     const startTime = postModal.post_date;
     const commentLength = Object.keys(comments).length;

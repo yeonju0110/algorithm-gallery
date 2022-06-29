@@ -1,4 +1,4 @@
-@value agGray, agMint, agTextGray, agBlue from '../../common/colors.css';
+@value agGray, agMint, agTextGray, agBlue from '../common/colors.css';
 
 .post {
     display: flex;
