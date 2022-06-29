@@ -7,9 +7,12 @@ import CommentList from '../comment_list/comment_list';
 import CommentInput from '../comment_input/comment_input';
 import Like from '../like/like';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 const PostModal = ({ postModal, comments, likes }) => {
+    const router = useRouter();
 
     const startTime = postModal.post_date;
     const commentLength = Object.keys(comments).length;
@@ -26,7 +29,7 @@ const PostModal = ({ postModal, comments, likes }) => {
             exit={{ opacity:0 }}
             transition={{ ease: "easeIn", duration: 0.7 }}
         >
-            <FontAwesomeIcon icon="fa-solid fa-xmark" className={styles.cancel} onClick={() => navigate(-1)} />
+            <FontAwesomeIcon icon={faXmarkCircle} className={styles.cancel} onClick={() => router.push("/")} />
             <div className={styles.box}>
                 <section className={styles.left}>
                     <ul className={styles.tags}>
@@ -61,7 +64,7 @@ const PostModal = ({ postModal, comments, likes }) => {
                             <CommentList comments={comments} />
                         </div>
                         <div className={styles.commentsInput}>
-                            <CommentInput postModal={postModal.postid} />
+                            <CommentInput postid={postModal.postid} />
                         </div>
                     </div>
                 </section>

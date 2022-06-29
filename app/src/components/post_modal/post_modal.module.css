@@ -53,6 +53,11 @@
     margin: 0;
     width: 100%;
     height: 88%;
+    overflow-y: scroll;
+}
+
+.codes::-webkit-scrollbar {
+    display: none;
 }
 
 .cancel {

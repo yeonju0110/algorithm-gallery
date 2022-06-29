@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './header_profile.module.css';
+import { useEffect } from 'react';
+
 
 const HeaderProfile = (props) => {
     const router = useRouter();
@@ -20,10 +22,19 @@ const HeaderProfile = (props) => {
         setIsProfile(!isProfile);
     }
 
+    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
+        credentials: "include"
+    })
+        .then((r) => {
+            if (r.status == 200) {
+                setIsLogin(true);
+            }
+        });
+
     return (
         <div className={styles.box}>
-            <div onClick={clickProfile} className={isLogin? `${styles.userImg}` : `${styles.basicImg}`}></div>
-            <div className={isProfile? `${styles.btnBox}` : `${styles.noneBox}`}>
+            <div onClick={clickProfile} className={isLogin ? `${styles.userImg}` : `${styles.basicImg}`}></div>
+            <div className={isProfile ? `${styles.btnBox}` : `${styles.noneBox}`}>
                 {!isLogin && (
                     <button className={styles.btn} onClick={goPage}>login</button>
                 )}
