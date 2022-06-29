@@ -9,7 +9,7 @@
     border-radius: 32.5px;
 }
 
-.lang, option {
+.lang, .opt {
     background-color: agBlue;
     border-width: 0;
     appearance: none;

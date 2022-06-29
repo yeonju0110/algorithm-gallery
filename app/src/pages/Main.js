@@ -1,9 +1,8 @@
 import React from 'react';
-import Header from '../header/header';
-import ItemList from '../item_list/item_list';
-import PostAddIcon from '../post_add_icon/post_add_icon';
-import Search from '../search/search';
-import styles from './main.module.css';
+import ItemList from '../components/item_list/item_list';
+import PostAddIcon from '../components/post_add_icon/post_add_icon';
+import Search from '../components/search/search';
+import styles from '../styles/main.module.css';
 import { motion } from 'framer-motion';
 
 const Main = ({ item }) => {

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import CodeEditor from '@uiw/react-textarea-code-editor';
+import dynamic from 'next/dynamic';
+import '@uiw/react-textarea-code-editor/dist.css';
 
+const CodeEditor = dynamic(
+  () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
+  { ssr: false }
+);
 
 function CodeMirror({hiAlgCode, tag1}) {
   const [code, setCode] = useState(
@@ -15,7 +20,7 @@ function CodeMirror({hiAlgCode, tag1}) {
     hiAlgCode(code);
   }, [code]);
 
-  document.documentElement.setAttribute('data-color-mode', 'dark')
+  // document.documentElement.setAttribute('data-color-mode', 'dark')
 
   return (
     <CodeEditor
@@ -28,7 +33,7 @@ function CodeMirror({hiAlgCode, tag1}) {
         fontSize: 18,
         width: '100%', //여기서 크기 조절
         height: '870px',
-        overflow: 'auto'
+        overflow: 'auto',
       }}
     />
   );

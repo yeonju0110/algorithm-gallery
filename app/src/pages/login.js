@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import styles from './LoginForm.module.css';
-import { Link } from 'react-router-dom';
-import Item from '../../service/item';
-import { useNavigate } from "react-router-dom";
+import styles from '../styles/login.module.css';
+import Link from 'next/link';
+import Item from '../service/item';
 import { motion } from 'framer-motion';
+import { useRouter } from "next/router";
 
 const item = new Item(process.env.REACT_APP_ALG_SERVER);
 
 
-function LoginForm() {
+function Login() {
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const onClickLoginBtn = (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ function LoginForm() {
           console.log(response);
           if (response.status == 200) {
             alert("로그인 성공");
-            navigate("/mypage");
+            router.push("/mypage");
             console.log(document.cookie);
 
           }
@@ -58,7 +58,7 @@ function LoginForm() {
     })
       .then((r) => {
         if (r.status == 200) {
-          navigate("/");
+          router.push("/");
         }
       });
 
@@ -89,7 +89,11 @@ function LoginForm() {
         <div className={styles.row_login}>
           <input type="submit" value="로그인하기" className={styles.btn_login} onClick={onClickLoginBtn} />
         </div>
-        <div className={styles.row_signup}><Link to="/signup" className={styles.signup_link}>계정이 없으시다면 여기를 클릭해주세요.</Link></div>
+        <div className={styles.row_signup}>
+          <Link href="/signup">
+            <a className={styles.signup_link}>계정이 없으시다면 여기를 클릭해주세요.</a>
+          </Link>
+        </div>
       </form>
 
     </motion.div>
@@ -97,4 +101,4 @@ function LoginForm() {
 
 }
 
-export default LoginForm;
+export default Login;

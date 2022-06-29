@@ -56,6 +56,10 @@
     overflow-y: scroll;
 }
 
+.codes::-webkit-scrollbar {
+    display: none;
+}
+
 .cancel {
     position: fixed;
     top: 20px;
