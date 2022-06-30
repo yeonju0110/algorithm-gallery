@@ -7,8 +7,13 @@ import LoginPage from './components/LoginForm/LoginForm';
 import SignUpPage from './components/SignUpForm/SignUpForm';
 import Header from './components/header/header';
 import PostView from './components/post_view/post_view';
+import MyPage from './components/MyPage/MyPage';
+
+
 
 function App({ modal, item }) {
+
+
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -18,6 +23,7 @@ function App({ modal, item }) {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignUpPage />} />
           <Route path='/p/:no' element={<PostView modal={modal} />} />
+          <Route path='/mypage' element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </div>
