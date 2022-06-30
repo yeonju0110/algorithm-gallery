@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import styles from './post_view.module.css';
-import PostModal from '../post_modal/post_modal';
+import styles from '../../styles/post.module.css';
+import PostModal from '../../components/post_modal/post_modal';
+import Modal from '../../service/modal';
+import { useRouter } from 'next/router';
 
-const PostView = ({ modal }) => {
+const Post = () => {
+    const modal = new Modal(process.env.REACT_APP_ALG_SERVER);
+
     const [postModal, setPostModal] = useState([]);
     const [comments, setComments] = useState([]);
     const [likes, setLikes] = useState([]);
 
-    const { no } = useParams();
+    const router = useRouter();
+    const { no } = router.query;
 
     useEffect(() => {
         modal
@@ -36,4 +40,4 @@ const PostView = ({ modal }) => {
     
 };
 
-export default PostView;
+export default Post;

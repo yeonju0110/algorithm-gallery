@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./SignUpForm.module.css";
-import { Link, useNavigate } from 'react-router-dom';
+import styles from "../styles/signup.module.css";
+import { motion } from 'framer-motion';
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function SignUpForm() {
   const [nickname, setName] = useState("");
@@ -21,7 +23,7 @@ function SignUpForm() {
   const isNotOverlap = useRef(false);
   const isconFirmedPassword = useRef(false);
 
-  const navigate = useNavigate();
+  const router = useRouter();
 
 
   const onChagneName = (e) => {
@@ -131,7 +133,7 @@ function SignUpForm() {
       }).then((res) => {
         if (res.status == 200) {
           alert('회원가입 성공 !');
-          navigate('/mypage');
+          router.push("/mypage");
         }
       });
     }
@@ -145,13 +147,20 @@ function SignUpForm() {
     })
       .then((r) => {
         if (r.status == 200) {
-          navigate('/');
+          router.push("/");
         }
       });
 
   }, []);
 
-  return (<div className={styles.background}>
+  return (
+    <motion.div
+      className={styles.background}
+      initial={{ opacity:0 }}
+      animate={{ opacity:1 }}
+      exit={{ opacity:0 }}
+      transition={{ ease: "easeIn", duration: 0.7 }}
+    >
     <form action="" method="post" className={styles.form} >
 
       <div className={styles.title}>회원가입</div>
@@ -185,9 +194,13 @@ function SignUpForm() {
         <button className={styles.btn_signup} onClick={onClickSubmitBtn}>Sign Up</button>
       </div>
 
-      <div className={styles.row_login}><Link to="/login" className={styles.login_link}>이미 계정이 있으시다면 여기를 클릭해주세요.</Link></div>
+      <div className={styles.row_login}>
+        <Link href="/login">
+          <a className={styles.login_link}>이미 계정이 있으시다면 여기를 클릭해주세요.</a>
+        </Link>
+      </div>
     </form >
-  </div>
+  </motion.div>
   );
 }
 

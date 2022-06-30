@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import styles from './header_profile.module.css';
 import { useEffect } from 'react';
 
 
 const HeaderProfile = (props) => {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [isProfile, setIsProfile] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
@@ -15,10 +15,10 @@ const HeaderProfile = (props) => {
     };
 
     const goPage = e => {
-        if (e.target.innerText === 'logout')
-            navigate('/');
+        if(e.target.innerText === 'logout')
+            router.push("/");
         else
-            navigate(`/${e.target.innerText}`);
+            router.push(`/${e.target.innerText}`);
         setIsProfile(!isProfile);
     }
 
@@ -53,5 +53,3 @@ const HeaderProfile = (props) => {
 };
 
 export default HeaderProfile;
-
-// onClick={() => navigate(`/p/${latestPost.postid}`)

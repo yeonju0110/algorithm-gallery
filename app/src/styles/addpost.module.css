@@ -1,0 +1,130 @@
+@value agGray, agMint, agTextGray, agBlue from '../common/colors.css';
+
+.post {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    background-color: #00000050;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.next {
+    display: none;
+}
+
+.next__before {
+    position: fixed;
+    top: 30px;
+    right: 180px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.next__before:hover {
+    opacity: 0.7;
+}
+
+.box {
+    width: 85%;
+    height: 100%;
+    background-color: agGray;
+    font-size: 14px;
+    padding: 0px;
+    display: flex;
+    box-shadow: 0px 4px 18px 10px #00000025;
+}
+
+.left__before {
+    width: 100%;
+    height: 100%;
+    background-color: agTextGray;
+}
+
+.leftTag {
+    display: flex;
+}
+
+.codeInput {
+    color: agMint;
+    padding: 10px 30px;
+}
+
+.right__before {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+}
+
+.algTagBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+}
+
+.textBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 78%;
+    border-top: 0.2px solid #343A4180;
+    border-bottom: 0.2px solid #343A4180;
+}
+
+.textInput {
+    width: 80%;
+    height: 85%;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    background-color: agGray;
+    border: none;
+}
+
+.submitBox {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submitBtn {
+    width: 90px;
+    height: 37px;
+    margin: 30px 40px;
+    background-color: agBlue;
+    border: none;
+    border-radius: 40px;
+    text-decoration: none;
+    color: agMint;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.submitBtn:active {
+    background-color: agMint;
+    color: agBlue;
+    box-shadow: 0px 4px 4px 0px #00000025;
+}
+
+.submitBtn:hover {
+    opacity: 0.8;
+}

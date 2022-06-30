@@ -1,4 +1,4 @@
-@value agGray from '../../common/colors.css';
+@value agGray from '../common/colors.css';
 
 .feed {
     width: 100%;
