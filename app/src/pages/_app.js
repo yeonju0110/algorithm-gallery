@@ -3,6 +3,7 @@ import Head from 'next/head';
 import '../styles/global.css';
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Layout from '../components/Layout/Layout';
 config.autoAddCss = false
 
 const App = ({ Component, pageProps }) => (
@@ -15,7 +16,9 @@ const App = ({ Component, pageProps }) => (
             <meta name="theme-color" content="#000000" />
             <title>Algorithm Gallery</title>
         </Head>
-        <Component {...pageProps} />
+        <Layout>
+            <Component {...pageProps} />
+        </Layout>
     </>
 );
 
