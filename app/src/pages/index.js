@@ -8,7 +8,6 @@ const item = new Item(process.env.REACT_APP_ALG_SERVER);
 const Index = (props) => {
     return (
         <>
-            <Header />
             <Main item={item} />
         </>
     );
