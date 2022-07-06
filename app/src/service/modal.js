@@ -1,33 +1,34 @@
 class Modal {
-    constructor(server) {
+    constructor(server, num) {
         this.server = server;
+        this.num = num;
         this.getRequestOptions = {
             method: 'GET',
             redirect: 'follow',
         };
     }
 
-    async showPost(num) {
+    async showPost() {
         const response = await fetch(
-            `${this.server}/post/modal?postid=${num}`,
+            `${this.server}/post/modal?postid=${this.num}`,
             this.requestOptions
         );
         const result = await response.json();
         return result.data[0];
     }
 
-    async showComment(num) {
+    async showComment() {
         const response = await fetch(
-            `${this.server}/comment/order?postid=${num}`,
+            `${this.server}/comment/order?postid=${this.num}`,
             this.requestOptions
         );
         const result = await response.json();
         return result.data;
     }
 
-    async showLikes(num) {
+    async showLikes() {
         const response = await fetch(
-            `${this.server}/likes/check?postid=${num}`,
+            `${this.server}/likes/check?postid=${this.num}`,
             this.requestOptions
         );
         const result = await response.json();

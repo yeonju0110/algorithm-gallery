@@ -12,6 +12,7 @@ class Item {
             `${this.server}/post/sort/mainpage/recent`,
             this.requestOptions
         );
+
         const result = await response.json();
         return result.data;
     }

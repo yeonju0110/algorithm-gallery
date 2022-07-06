@@ -6,6 +6,8 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import Layout from '../components/Layout/Layout';
 config.autoAddCss = false
 
+import wrapper from '../common/redux/store';
+
 const App = ({ Component, pageProps }) => (
     <>
         <Head>
@@ -22,4 +24,5 @@ const App = ({ Component, pageProps }) => (
     </>
 );
 
-export default App;
+
+export default wrapper.withRedux(App);
