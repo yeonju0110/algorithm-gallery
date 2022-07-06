@@ -2,7 +2,7 @@ export const changePost = () => ({
   type: 'CHANGE'
 })
 
-const paramsReducer = (state = postNum, action) => {
+const paramsReducer = (state, action) => {
   if (state === undefined) {
     return { postNum: 1, };
   }
