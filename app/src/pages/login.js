@@ -40,8 +40,6 @@ function Login() {
           if (response.status == 200) {
             alert("로그인 성공");
             router.push("/mypage");
-            console.log(document.cookie);
-
           }
           else if (response.status == 400) {
             setMessage("잘못된 아이디 혹은 비밀번호 입니다.");
@@ -51,16 +49,19 @@ function Login() {
     }
   }
 
-  useEffect(() => { // 로그인되있는 상태면 메인페이지로
-
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
-      credentials: "include"
-    })
-      .then((r) => {
-        if (r.status == 200) {
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_ALG_SERVER}/users/check`);
+        if (response.status == 200) {
           router.push("/");
         }
-      });
+      }
+      catch (e) {
+        console.error(e);
+      }
+    }
+    fetchData();
 
   }, []);
 
@@ -68,9 +69,9 @@ function Login() {
   return (
     <motion.div
       className={styles.background}
-      initial={{ opacity:0 }}
-      animate={{ opacity:1 }}
-      exit={{ opacity:0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ ease: "easeIn", duration: 0.7 }}
     >
 

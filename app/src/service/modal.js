@@ -10,29 +10,29 @@ class Modal {
 
     async showPost() {
         const response = await fetch(
-            `${this.server}/post/modal?postid=${this.num}`,
+            `${this.server}/post/${this.num}`,
             this.requestOptions
         );
         const result = await response.json();
-        return result.data[0];
+        return result;
     }
 
     async showComment() {
         const response = await fetch(
-            `${this.server}/comment/order?postid=${this.num}`,
+            `${this.server}/comment/${this.num}`,
             this.requestOptions
         );
         const result = await response.json();
-        return result.data;
+        return result;
     }
 
     async showLikes() {
         const response = await fetch(
-            `${this.server}/likes/check?postid=${this.num}`,
+            `${this.server}/like/${this.num}`,
             this.requestOptions
         );
         const result = await response.json();
-        return result.data;
+        return result;
     }
 }
 
