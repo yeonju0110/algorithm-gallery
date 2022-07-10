@@ -8,8 +8,6 @@ function PostContainerRow({ lang }) {
 
 
   const wheelEvent = (e) => {
-    e.preventDefault();
-    e.stop
     container.current.scrollLeft += (e.deltaY * 0.7);
   }
 
