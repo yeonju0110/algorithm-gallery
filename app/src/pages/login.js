@@ -5,6 +5,7 @@ import Item from '../service/item';
 import { motion } from 'framer-motion';
 import { useRouter } from "next/router";
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const item = new Item(process.env.REACT_APP_ALG_SERVER);
 
@@ -12,6 +13,7 @@ const item = new Item(process.env.REACT_APP_ALG_SERVER);
 function Login() {
   const [message, setMessage] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const onClickLoginBtn = (e) => {
     e.preventDefault();
@@ -61,6 +63,7 @@ function Login() {
             }
             makeData();
 
+            dispatch({ type: 'LOGIN' });
             router.push("/mypage");
           }
           else if (response.status == 401) {

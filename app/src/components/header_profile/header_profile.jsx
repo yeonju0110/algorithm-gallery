@@ -3,13 +3,14 @@ import { useRouter } from 'next/router';
 import styles from './header_profile.module.css';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const HeaderProfile = (props) => {
     const router = useRouter();
 
     const [isProfile, setIsProfile] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
-
+    // const [isLogin, setIsLogin] = useState(false);
+    const isLogin = useSelector((state) => state.loginReducer.isLogin);
     const clickProfile = () => {
         setIsProfile(!isProfile);
     };
@@ -22,11 +23,19 @@ const HeaderProfile = (props) => {
         setIsProfile(!isProfile);
     }
 
+
+    const dispatch = useDispatch();
+    const onClickLogoutBtn = () => {
+        localStorage.clear();
+        dispatch({ type: 'LOGOUT' });
+        router.push("/");
+    }
+
     useEffect(() => {
 
-        if (localStorage.getItem('accessToken') != null) {
-            setIsLogin(true);
-        }
+        // if (localStorage.getItem('accessToken') != null) {
+        //     setIsLogin(true);
+        // }
 
         // async function fetchData() {
         //     try {
@@ -57,7 +66,7 @@ const HeaderProfile = (props) => {
                     <button className={styles.btn} onClick={goPage}>mypage</button>
                 )}
                 {isLogin && (
-                    <button className={styles.btn} onClick={() => { localStorage.clear(); }}>logout</button>
+                    <button className={styles.btn} onClick={onClickLogoutBtn}>logout</button>
                 )}
             </div>
         </div>

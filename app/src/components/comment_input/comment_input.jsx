@@ -24,6 +24,7 @@ const Comment_Input = ({ postid }) => {
             .catch(error => console.log('error', error));
 
         textRef.current.value = '';
+
     }
 
     return (
