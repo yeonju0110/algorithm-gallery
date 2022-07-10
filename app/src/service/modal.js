@@ -13,6 +13,7 @@ class Modal {
             `${this.server}/post/${this.num}`,
             this.requestOptions
         );
+        console.log(response);
         const result = await response.json();
         return result;
     }

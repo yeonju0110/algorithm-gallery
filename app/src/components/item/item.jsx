@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from './item.module.css';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 const Item = ({ postId, latestPost }) => {
     const router = useRouter();
     const dispatch = useDispatch();
 
-    const st = useSelector((state) => state.paramsReducer.postNum);
     return (
         <div className={styles.box} onClick={() => {
             dispatch({ type: 'CHANGE', postNum: latestPost.postid });

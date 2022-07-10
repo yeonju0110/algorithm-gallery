@@ -12,7 +12,6 @@ class Item {
             `${this.server}/post`,
             this.requestOptions
         );
-        console.log(response);
         const result = await response.json();
         return result;
     }

@@ -8,13 +8,17 @@ function PostContainerRow({ lang }) {
 
 
   const wheelEvent = (e) => {
+    e.preventDefault();
+    e.stop
     container.current.scrollLeft += (e.deltaY * 0.7);
   }
 
   const getPosts = () => {
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/post/sort/mypage/lang?lang=${lang}`)
+    fetch(`${process.env.REACT_APP_ALG_SERVER}/post/sort/${lang}`, {
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` }
+    })
       .then((res) => res.json()).then((res) => {
-        setPostList(res.data);
+        setPostList(res);
       });
   }
 

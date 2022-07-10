@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Item from '../service/item';
 import { motion } from 'framer-motion';
 import { useRouter } from "next/router";
+import axios from 'axios';
 
 const item = new Item(process.env.REACT_APP_ALG_SERVER);
 
@@ -24,9 +25,24 @@ function Login() {
     else {
       setMessage("");
 
-      fetch(`${process.env.REACT_APP_ALG_SERVER}/users/signin`, {
+
+      // const login = async () => {
+      //   const { login_data } = await axios({
+      //     method: 'post',
+      //     url: `${process.env.REACT_APP_ALG_SERVER}/user/signin`,
+      //     data: {
+      //       "userid": id,
+      //       "password": password
+      //     }
+      //   });
+      //   console.log(login_data);
+      // }
+      // login();
+
+
+      fetch(`${process.env.REACT_APP_ALG_SERVER}/user/signin`, {
         method: "POST",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -36,12 +52,18 @@ function Login() {
         })
       })
         .then(response => {
-          console.log(response);
           if (response.status == 200) {
-            alert("로그인 성공");
+
+            const makeData = async () => {
+              const data = await response.json();
+              localStorage.setItem('accessToken', data.token.accessToken);
+              localStorage.setItem('refreshToken', data.token.refreshToken);
+            }
+            makeData();
+
             router.push("/mypage");
           }
-          else if (response.status == 400) {
+          else if (response.status == 401) {
             setMessage("잘못된 아이디 혹은 비밀번호 입니다.");
           }
         })
@@ -50,18 +72,18 @@ function Login() {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_ALG_SERVER}/users/check`);
-        if (response.status == 200) {
-          router.push("/");
-        }
-      }
-      catch (e) {
-        console.error(e);
-      }
-    }
-    fetchData();
+    // async function fetchData() {
+    //   try {
+    //     const response = await axios.get(`${process.env.REACT_APP_ALG_SERVER}/users/check`);
+    //     if (response.status == 200) {
+    //       router.push("/");
+    //     }
+    //   }
+    //   catch (e) {
+    //     console.error(e);
+    //   }
+    // }
+    // fetchData();
 
   }, []);
 

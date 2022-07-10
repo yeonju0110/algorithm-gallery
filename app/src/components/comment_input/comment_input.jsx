@@ -3,29 +3,30 @@ import styles from './comment_input.module.css';
 
 const Comment_Input = ({ postid }) => {
     const textRef = useRef();
-    
+
     const onSubmit = event => {
         event.preventDefault();
         console.log(textRef.current.value);
 
-        fetch(`${process.env.REACT_APP_ALG_SERVER}/comment/registration`, {
+        fetch(`${process.env.REACT_APP_ALG_SERVER}/comment`, {
             method: "POST",
-            credentials: "include",
+            // credentials: "include",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
             },
             body: JSON.stringify({
                 "postid": postid,
                 "text": textRef.current.value
             })
         })
-        .then(response => console.log(response.json()))
-        .catch(error => console.log('error', error));
+            .then(response => console.log(response.json()))
+            .catch(error => console.log('error', error));
 
         textRef.current.value = '';
     }
 
-    return(
+    return (
         <div className={styles.box}>
             <input
                 ref={textRef}
