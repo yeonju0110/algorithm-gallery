@@ -8,6 +8,7 @@ const Post = () => {
     const [comments, setComments] = useState([]);
     const [likes, setLikes] = useState([]);
 
+
     const modal = new Modal(process.env.REACT_APP_ALG_SERVER, postNum);
 
     useEffect(() => {
