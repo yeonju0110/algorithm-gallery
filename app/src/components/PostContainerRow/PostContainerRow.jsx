@@ -20,9 +20,9 @@ function PostContainerRow({ lang }) {
       });
   }
 
-  const loadPost = (num, lang, alg) => {
+  const loadPost = (post) => {
     return (
-      <Post key={num} problemNum={num} lang={lang} alg={alg} />
+      <Post post={post} key={post.postid} />
     );
   }
 
@@ -39,7 +39,9 @@ function PostContainerRow({ lang }) {
           <div className={styles.title}>#{lang}</div>
         </div>
         <div ref={container} className={styles.container} onWheel={wheelEvent}>
-          {postList.map((p) => { return loadPost(p.tag2, p.tag1, p.tag3) })}
+          {postList.map((p) => {
+            return loadPost(p, p.postid)
+          })}
         </div>
       </div>
     </div>
