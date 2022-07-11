@@ -30,10 +30,12 @@ function SignUpForm() {
     setName(e.currentTarget.value);
     if (e.currentTarget.value == "") {
       setNameMessage("닉네임을 입력해주세요.");
-      isNotEmpty.current = true;
+      isNotEmpty.current = false;
     }
     else {
-      isNotEmpty.current = false;
+      setNameMessage("");
+      isNotEmpty.current = true;
+      console.log(isNotEmpty.current);
     }
   }
   const onChangeEmail = (e) => {
@@ -119,8 +121,12 @@ function SignUpForm() {
   const onClickSubmitBtn = (e) => {
     e.preventDefault();
 
-    if (isNotEmpty.current && isNotOverlap.current && isValidEmail.current && isconFirmedPassword.current) {
-      fetch(`${process.env.REACT_APP_ALG_SERVER}/users/signup`, {
+
+    // isNotOverlap.current 도 추가해야함 (중복여부 api 완성되면..)
+
+    if (isNotEmpty.current && isValidEmail.current && isconFirmedPassword.current) {
+      console.log('here');
+      fetch(`${process.env.REACT_APP_ALG_SERVER}/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +139,7 @@ function SignUpForm() {
       }).then((res) => {
         if (res.status == 200) {
           alert('회원가입 성공 !');
-          router.push("/mypage");
+          router.push("/login");
         }
       });
     }
