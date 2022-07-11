@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './header_profile.module.css';
 import { useEffect } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 const HeaderProfile = (props) => {
     const router = useRouter();
-
     const [isProfile, setIsProfile] = useState(false);
-    // const [isLogin, setIsLogin] = useState(false);
+    const dispatch = useDispatch();
+
+
     const isLogin = useSelector((state) => state.loginReducer.isLogin);
     const clickProfile = () => {
         setIsProfile(!isProfile);
@@ -23,8 +23,6 @@ const HeaderProfile = (props) => {
         setIsProfile(!isProfile);
     }
 
-
-    const dispatch = useDispatch();
     const onClickLogoutBtn = () => {
         localStorage.clear();
         dispatch({ type: 'LOGOUT' });
@@ -32,25 +30,10 @@ const HeaderProfile = (props) => {
     }
 
     useEffect(() => {
-
-        // if (localStorage.getItem('accessToken') != null) {
-        //     setIsLogin(true);
-        // }
-
-        // async function fetchData() {
-        //     try {
-        //         const response = await axios.get(`${process.env.REACT_APP_ALG_SERVER}/users/check`);
-        //         if (response.status == true) {
-        //             setIsLogin(true);
-        //         }
-        //     }
-        //     catch (e) {
-        //         console.error(e);
-        //     }
-        // }
-        // fetchData();
-
-    }, []);
+        if (localStorage.getItem('accessToken') !== null) {
+            dispatch({ type: 'LOGIN' });
+        }
+    });
 
     return (
         <div className={styles.box}>
