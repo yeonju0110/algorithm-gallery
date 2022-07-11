@@ -45,11 +45,13 @@ const AddPost = (props) => {
     const postSubmit = () => {
         setNext(!next);
         console.log(`algCode: ${algCode}, text: ${text}, tag1: ${tag1}, tag2: ${tag2}, tag3: ${tag3}`);
-        fetch(`${process.env.REACT_APP_ALG_SERVER}/post/registration`, {
+        fetch(`${process.env.REACT_APP_ALG_SERVER}/post`, {
             method: "POST",
-            credentials: "include",
+            // credentials: "include",
+
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({
                 "algCode": algCode,
@@ -59,14 +61,14 @@ const AddPost = (props) => {
                 "tag3": tag3
             })
         })
-        .then(response => {
-            console.log(response);
-            if (response.status == 200) {
-                alert("글작성이 완료되었습니다");
-                router.push('/');
-            }
-        })
-        .catch(error => console.log('error', error));
+            .then(response => {
+                console.log(response);
+                if (response.status == 200) {
+                    alert("글작성이 완료되었습니다");
+                    router.push('/');
+                }
+            })
+            .catch(error => console.log('error', error));
     };
 
     const codeNext = () => {
@@ -76,39 +78,39 @@ const AddPost = (props) => {
     return (
         <motion.div
             className={styles.post}
-            initial={{ opacity:0 }}
-            animate={{ opacity:1 }}
-            exit={{ opacity:0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ ease: "easeIn", duration: 0.7 }}
         >
             <FontAwesomeIcon icon={faXmarkCircle} className={styles.cancel} onClick={() => router.back()} />
-            {!next?
+            {!next ?
                 <FontAwesomeIcon icon={faAnglesRight} className={styles.next__before} onClick={codeNext} />
                 : <FontAwesomeIcon icon={faAnglesRight} className={styles.next} onClick={codeNext} />
             }
             <div className={styles.box}>
                 <motion.section
-                    initial={{ opacity:0 }}
-                    animate={{ opacity:1 }}
-                    exit={{ opacity:0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ ease: "easeIn", duration: 0.7 }}
-                    className={styles.left__before} style={{width: next? '65%': '100%'}}
+                    className={styles.left__before} style={{ width: next ? '65%' : '100%' }}
                 >
                     <div className={styles.leftTag}>
                         <InputLang hiTag1={hiTag1} />
                         <InputProbNum hiTag2={hiTag2} />
                     </div>
                     <div className={styles.codeInput}>
-                        <CodeMirror hiAlgCode={hiAlgCode} tag1={(tag1=='C/C++')? 'c' : tag1} />
+                        <CodeMirror hiAlgCode={hiAlgCode} tag1={(tag1 == 'C/C++') ? 'c' : tag1} />
                     </div>
                 </motion.section>
                 <motion.section
                     initial={{ opacity: 0 }}
-                    animate={{ opacity:1 }}
+                    animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ ease: "easeIn", duration: 0.7 }}
                     className={styles.right__before}
-                    style={{display: next? 'flex': 'none'}}
+                    style={{ display: next ? 'flex' : 'none' }}
                 >
                     <div className={styles.algTagBox}>
                         <InputAlg hiTag3={hiTag3} />
