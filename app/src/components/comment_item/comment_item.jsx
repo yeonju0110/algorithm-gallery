@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './comment_item.module.css';
 
 const CommentItem = ({ commentId, comment }) => {
-  console.log(comment);
 
   return (
     <div className={styles.user}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './post_modal.module.css';
 import Highlight from 'react-highlight';
 import Moment from 'react-moment';
@@ -11,14 +11,16 @@ import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
+
 const PostModal = ({ postModal, comments, likes }) => {
   const router = useRouter();
-
   const commentLength = Object.keys(comments).length;
+  const [likeCount, setLikeCount] = useState(likes?.count);
 
-  const onLike = e => {
-    console.log(e);
+  const onLike = (count) => {
+    setLikeCount(count);
   };
+
 
   return (
     <motion.div
@@ -63,7 +65,7 @@ const PostModal = ({ postModal, comments, likes }) => {
               <p className={styles.commentTitle}>댓글</p>
               <p className={styles.commentNum}>{commentLength}</p>
               <Like onLike={onLike} />
-              <p className={styles.likeNum}>{likes?.count}</p>
+              <p className={styles.likeNum}>{likeCount}</p>
             </div>
             <div className={styles.commentsBox}>
               <CommentList comments={comments} />
