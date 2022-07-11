@@ -14,7 +14,7 @@
 .queen {
   z-index: 1;
   margin: 10px 0 -18px 0;
-  color: #FF2D58;
+  color: #ff2d58;
   font-size: 50px;
 }
 
@@ -23,13 +23,17 @@
   height: 200px;
   margin: 10px;
   /* background: url('../../public/profile-cat.png') center/cover no-repeat; */
-  border: 1px solid #FF2D58;
+  border: 1px solid #ff2d58;
   border-radius: 50%;
 }
 
 .info {
   width: 400px;
   text-align: center;
+}
+
+.info * {
+  margin: 20px 3px;
 }
 
 .info__name {
@@ -57,7 +61,8 @@
 }
 
 .categories__name {
-  color: #FF2D58;
+  color: #ff2d58;
+  margin-right: 10px;
 }
 
 .categories__tags {

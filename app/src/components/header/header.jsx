@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./header.module.css";
-import Link from "next/link";
+import React from 'react';
+import styles from './header.module.css';
+import Link from 'next/link';
 // import { Link } from "react-router-dom";
-import HeaderProfile from "../header_profile/header_profile";
+import HeaderProfile from '../header_profile/header_profile';
 
 function Header() {
   return (

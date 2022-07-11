@@ -12,65 +12,70 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 const PostModal = ({ postModal, comments, likes }) => {
-    const router = useRouter();
+  const router = useRouter();
 
-    const startTime = postModal.post_date;
-    const commentLength = Object.keys(comments).length;
+  const commentLength = Object.keys(comments).length;
 
-    const onLike = e => {
-        console.log(e);
-    }
+  const onLike = e => {
+    console.log(e);
+  };
 
-    return (
-        <motion.div
-            className={styles.post}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ ease: "easeIn", duration: 0.7 }}
-        >
-            <FontAwesomeIcon icon={faXmarkCircle} className={styles.cancel} onClick={() => router.push("/")} />
-            <div className={styles.box}>
-                <section className={styles.left}>
-                    <ul className={styles.tags}>
-                        <li># {postModal.tag1}</li>
-                        <li># {postModal.tag2}</li>
-                        <li># {postModal.tag3}</li>
-                    </ul>
-                    <div className={styles.codes}>
-                        <Highlight language={postModal.tag1} children={postModal.algCode} />
-                    </div>
-                </section>
-                <section className={styles.right}>
-                    <div className={styles.profile}>
-                        <div className={styles.profile__img}>
-                        </div>
-                        <p className={styles.name}>{postModal.nickname}</p>
-                    </div>
-                    <div className={styles.postTime}>
-                        <Moment fromNow>{startTime}</Moment>
-                    </div>
-                    <div className={styles.text}>
-                        <p>{postModal.text}</p>
-                    </div>
-                    <div className={styles.comments}>
-                        <div className={styles.commentsHeader}>
-                            <p className={styles.commentTitle}>댓글</p>
-                            <p className={styles.commentNum}>{commentLength}</p>
-                            <Like onLike={onLike} />
-                            <p className={styles.likeNum}>{likes.count}</p>
-                        </div>
-                        <div className={styles.commentsBox}>
-                            <CommentList comments={comments} />
-                        </div>
-                        <div className={styles.commentsInput}>
-                            <CommentInput postid={postModal.postid} />
-                        </div>
-                    </div>
-                </section>
+  return (
+    <motion.div
+      className={styles.post}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ ease: 'easeIn', duration: 0.7 }}
+    >
+      <FontAwesomeIcon
+        icon={faXmarkCircle}
+        className={styles.cancel}
+        onClick={() => router.push('/')}
+      />
+      <div className={styles.box}>
+        <section className={styles.left}>
+          <ul className={styles.tags}>
+            <li># {postModal?.tag1}</li>
+            <li># {postModal?.tag2}</li>
+            <li># {postModal?.tag3}</li>
+          </ul>
+          <div className={styles.codes}>
+            <Highlight
+              language={postModal?.tag1}
+              children={postModal?.algCode}
+            />
+          </div>
+        </section>
+        <section className={styles.right}>
+          <div className={styles.profile}>
+            <div className={styles.profile__img}></div>
+            <p className={styles.name}>{postModal?.users.userid}</p>
+          </div>
+          <div className={styles.postTime}>
+            <Moment fromNow>{postModal?.post_date}</Moment>
+          </div>
+          <div className={styles.text}>
+            <p>{postModal?.text}</p>
+          </div>
+          <div className={styles.comments}>
+            <div className={styles.commentsHeader}>
+              <p className={styles.commentTitle}>댓글</p>
+              <p className={styles.commentNum}>{commentLength}</p>
+              <Like onLike={onLike} />
+              <p className={styles.likeNum}>{likes?.count}</p>
             </div>
-        </motion.div>
-    );
+            <div className={styles.commentsBox}>
+              <CommentList comments={comments} />
+            </div>
+            <div className={styles.commentsInput}>
+              <CommentInput postid={postModal?.postid} />
+            </div>
+          </div>
+        </section>
+      </div>
+    </motion.div>
+  );
 };
 
 export default PostModal;
