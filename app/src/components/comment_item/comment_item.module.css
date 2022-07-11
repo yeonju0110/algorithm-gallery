@@ -30,3 +30,17 @@
 .text {
     font-weight: 400;
 }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn {
+    float: right;
+}
+
+.comment {
+    display: flex;
+}

@@ -7,8 +7,8 @@ const CommentList = ({ comments }) => {
         <ul className={styles.box}>
             {comments.map(comment => (
                 <CommentItem
-                    key={comment.commentid}
-                    comment={comment} 
+                    commentId={comment.commentid}
+                    comment={comment}
                 />
             ))}
         </ul>
