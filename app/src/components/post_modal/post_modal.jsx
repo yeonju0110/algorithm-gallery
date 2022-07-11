@@ -24,9 +24,9 @@ const PostModal = ({ postModal, comments, likes }) => {
     return (
         <motion.div
             className={styles.post}
-            initial={{ opacity:0 }}
-            animate={{ opacity:1 }}
-            exit={{ opacity:0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ ease: "easeIn", duration: 0.7 }}
         >
             <FontAwesomeIcon icon={faXmarkCircle} className={styles.cancel} onClick={() => router.push("/")} />

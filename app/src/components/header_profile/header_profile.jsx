@@ -2,34 +2,55 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './header_profile.module.css';
 import { useEffect } from 'react';
-
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const HeaderProfile = (props) => {
     const router = useRouter();
 
     const [isProfile, setIsProfile] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
-
+    // const [isLogin, setIsLogin] = useState(false);
+    const isLogin = useSelector((state) => state.loginReducer.isLogin);
     const clickProfile = () => {
         setIsProfile(!isProfile);
     };
 
     const goPage = e => {
-        if(e.target.innerText === 'logout')
+        if (e.target.innerText === 'logout')
             router.push("/");
         else
             router.push(`/${e.target.innerText}`);
         setIsProfile(!isProfile);
     }
 
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
-        credentials: "include"
-    })
-        .then((r) => {
-            if (r.status == 200) {
-                setIsLogin(true);
-            }
-        });
+
+    const dispatch = useDispatch();
+    const onClickLogoutBtn = () => {
+        localStorage.clear();
+        dispatch({ type: 'LOGOUT' });
+        router.push("/");
+    }
+
+    useEffect(() => {
+
+        // if (localStorage.getItem('accessToken') != null) {
+        //     setIsLogin(true);
+        // }
+
+        // async function fetchData() {
+        //     try {
+        //         const response = await axios.get(`${process.env.REACT_APP_ALG_SERVER}/users/check`);
+        //         if (response.status == true) {
+        //             setIsLogin(true);
+        //         }
+        //     }
+        //     catch (e) {
+        //         console.error(e);
+        //     }
+        // }
+        // fetchData();
+
+    }, []);
 
     return (
         <div className={styles.box}>
@@ -45,7 +66,7 @@ const HeaderProfile = (props) => {
                     <button className={styles.btn} onClick={goPage}>mypage</button>
                 )}
                 {isLogin && (
-                    <button className={styles.btn} onClick={goPage}>logout</button>
+                    <button className={styles.btn} onClick={onClickLogoutBtn}>logout</button>
                 )}
             </div>
         </div>

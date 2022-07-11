@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Item from '../service/item';
 import { motion } from 'framer-motion';
 import { useRouter } from "next/router";
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const item = new Item(process.env.REACT_APP_ALG_SERVER);
 
@@ -11,6 +13,7 @@ const item = new Item(process.env.REACT_APP_ALG_SERVER);
 function Login() {
   const [message, setMessage] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const onClickLoginBtn = (e) => {
     e.preventDefault();
@@ -24,9 +27,24 @@ function Login() {
     else {
       setMessage("");
 
-      fetch(`${process.env.REACT_APP_ALG_SERVER}/users/signin`, {
+
+      // const login = async () => {
+      //   const { login_data } = await axios({
+      //     method: 'post',
+      //     url: `${process.env.REACT_APP_ALG_SERVER}/user/signin`,
+      //     data: {
+      //       "userid": id,
+      //       "password": password
+      //     }
+      //   });
+      //   console.log(login_data);
+      // }
+      // login();
+
+
+      fetch(`${process.env.REACT_APP_ALG_SERVER}/user/signin`, {
         method: "POST",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -36,14 +54,19 @@ function Login() {
         })
       })
         .then(response => {
-          console.log(response);
           if (response.status == 200) {
-            alert("로그인 성공");
-            router.push("/mypage");
-            console.log(document.cookie);
 
+            const makeData = async () => {
+              const data = await response.json();
+              localStorage.setItem('accessToken', data.token.accessToken);
+              localStorage.setItem('refreshToken', data.token.refreshToken);
+            }
+            makeData();
+
+            dispatch({ type: 'LOGIN' });
+            router.push("/mypage");
           }
-          else if (response.status == 400) {
+          else if (response.status == 401) {
             setMessage("잘못된 아이디 혹은 비밀번호 입니다.");
           }
         })
@@ -51,16 +74,19 @@ function Login() {
     }
   }
 
-  useEffect(() => { // 로그인되있는 상태면 메인페이지로
-
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
-      credentials: "include"
-    })
-      .then((r) => {
-        if (r.status == 200) {
-          router.push("/");
-        }
-      });
+  useEffect(() => {
+    // async function fetchData() {
+    //   try {
+    //     const response = await axios.get(`${process.env.REACT_APP_ALG_SERVER}/users/check`);
+    //     if (response.status == 200) {
+    //       router.push("/");
+    //     }
+    //   }
+    //   catch (e) {
+    //     console.error(e);
+    //   }
+    // }
+    // fetchData();
 
   }, []);
 
@@ -68,9 +94,9 @@ function Login() {
   return (
     <motion.div
       className={styles.background}
-      initial={{ opacity:0 }}
-      animate={{ opacity:1 }}
-      exit={{ opacity:0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ ease: "easeIn", duration: 0.7 }}
     >
 

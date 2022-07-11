@@ -6,15 +6,17 @@ import { useRouter } from "next/router";
 
 function MyPage() {
   const router = useRouter();
-
   useEffect(() => {
+    // if (localStorage.getItem('accessToken') === null) {
+    //   router.push('/');
+    // }
 
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
-      .then((r) => {
-        if (r.status != 200) {
-          router.push('/');
-        }
-      });
+    // fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`)
+    //   .then((r) => {
+    //     if (r.status != 200) {
+    //       router.push('/');
+    //     }
+    //   });
 
   }, []);
 

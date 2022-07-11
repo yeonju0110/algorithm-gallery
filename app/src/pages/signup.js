@@ -30,10 +30,12 @@ function SignUpForm() {
     setName(e.currentTarget.value);
     if (e.currentTarget.value == "") {
       setNameMessage("닉네임을 입력해주세요.");
-      isNotEmpty.current = true;
+      isNotEmpty.current = false;
     }
     else {
-      isNotEmpty.current = false;
+      setNameMessage("");
+      isNotEmpty.current = true;
+      console.log(isNotEmpty.current);
     }
   }
   const onChangeEmail = (e) => {
@@ -119,8 +121,12 @@ function SignUpForm() {
   const onClickSubmitBtn = (e) => {
     e.preventDefault();
 
-    if (isNotEmpty.current && isNotOverlap.current && isValidEmail.current && isconFirmedPassword.current) {
-      fetch(`${process.env.REACT_APP_ALG_SERVER}/users/signup`, {
+
+    // isNotOverlap.current 도 추가해야함 (중복여부 api 완성되면..)
+
+    if (isNotEmpty.current && isValidEmail.current && isconFirmedPassword.current) {
+      console.log('here');
+      fetch(`${process.env.REACT_APP_ALG_SERVER}/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +139,7 @@ function SignUpForm() {
       }).then((res) => {
         if (res.status == 200) {
           alert('회원가입 성공 !');
-          router.push("/mypage");
+          router.push("/login");
         }
       });
     }
@@ -142,65 +148,65 @@ function SignUpForm() {
 
   useEffect(() => { // 로그인되있는 상태면 메인페이지로
 
-    fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
-      credentials: "include"
-    })
-      .then((r) => {
-        if (r.status == 200) {
-          router.push("/");
-        }
-      });
+    // fetch(`${process.env.REACT_APP_ALG_SERVER}/users/check`, {
+    //   credentials: "include"
+    // })
+    //   .then((r) => {
+    //     if (r.status == 200) {
+    //       router.push("/");
+    //     }
+    //   });
 
   }, []);
 
   return (
     <motion.div
       className={styles.background}
-      initial={{ opacity:0 }}
-      animate={{ opacity:1 }}
-      exit={{ opacity:0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ ease: "easeIn", duration: 0.7 }}
     >
-    <form action="" method="post" className={styles.form} >
+      <form action="" method="post" className={styles.form} >
 
-      <div className={styles.title}>회원가입</div>
-      <div className={styles.row}>
-        <label htmlFor="input-name" className={styles.label}>프로필이름</label>
-        <input type="text" id="input-name" className={styles.input} onChange={onChagneName} ></input>
-        <div className={styles.message}>{nameMessage}</div>
-      </div>
+        <div className={styles.title}>회원가입</div>
+        <div className={styles.row}>
+          <label htmlFor="input-name" className={styles.label}>프로필이름</label>
+          <input type="text" id="input-name" className={styles.input} onChange={onChagneName} ></input>
+          <div className={styles.message}>{nameMessage}</div>
+        </div>
 
-      <div className={styles.row}>
-        <label htmlFor="input-id" className={styles.label}>이메일</label>
-        <input type="text" id="input-id" autoComplete="username" className={`${styles.smallarea} ${styles.input}`} onChange={onChangeEmail} />
-        <button className={styles.btn_overlap} onClick={onClickOverLapBtn}>중복확인</button>
-        <div className={styles.message}>{emailMessage}</div>
+        <div className={styles.row}>
+          <label htmlFor="input-id" className={styles.label}>이메일</label>
+          <input type="text" id="input-id" autoComplete="username" className={`${styles.smallarea} ${styles.input}`} onChange={onChangeEmail} />
+          <button className={styles.btn_overlap} onClick={onClickOverLapBtn}>중복확인</button>
+          <div className={styles.message}>{emailMessage}</div>
 
-      </div>
+        </div>
 
-      <div className={styles.row}>
-        <label htmlFor="input-psw" className={styles.label}>비밀번호</label>
-        <input type="password" id="input-psw" className={styles.input} autoComplete="new-password" onChange={onChangePassword} />
-        <div className={styles.message}>{passwordMessage}</div>
-      </div>
+        <div className={styles.row}>
+          <label htmlFor="input-psw" className={styles.label}>비밀번호</label>
+          <input type="password" id="input-psw" className={styles.input} autoComplete="new-password" onChange={onChangePassword} />
+          <div className={styles.message}>{passwordMessage}</div>
+        </div>
 
-      <div className={styles.row}>
-        <label htmlFor="input-psw-check" className={styles.label}>비밀번호 확인</label>
-        <input type="password" id="input-psw-check" className={styles.input} autoComplete="new-password" onChange={onChangeCheckPassword} />
-        <div className={styles.message}>{passwordCheckMessage}</div>
-      </div>
+        <div className={styles.row}>
+          <label htmlFor="input-psw-check" className={styles.label}>비밀번호 확인</label>
+          <input type="password" id="input-psw-check" className={styles.input} autoComplete="new-password" onChange={onChangeCheckPassword} />
+          <div className={styles.message}>{passwordCheckMessage}</div>
+        </div>
 
-      <div className={styles.row_signup}>
-        <button className={styles.btn_signup} onClick={onClickSubmitBtn}>Sign Up</button>
-      </div>
+        <div className={styles.row_signup}>
+          <button className={styles.btn_signup} onClick={onClickSubmitBtn}>Sign Up</button>
+        </div>
 
-      <div className={styles.row_login}>
-        <Link href="/login">
-          <a className={styles.login_link}>이미 계정이 있으시다면 여기를 클릭해주세요.</a>
-        </Link>
-      </div>
-    </form >
-  </motion.div>
+        <div className={styles.row_login}>
+          <Link href="/login">
+            <a className={styles.login_link}>이미 계정이 있으시다면 여기를 클릭해주세요.</a>
+          </Link>
+        </div>
+      </form >
+    </motion.div>
   );
 }
 
