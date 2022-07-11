@@ -2,7 +2,12 @@ export const changePost = () => ({
   type: 'CHANGE'
 })
 
-const paramsReducer = (state: string, action?: any) => {
+type action = {
+  type: string;
+  postNum?: number;
+}
+
+const paramsReducer = (state: string, action?: action) => {
   if (state === undefined) {
     return { postNum: 1, };
   }

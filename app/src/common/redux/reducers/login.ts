@@ -1,7 +1,11 @@
 const LOGIN: string = 'LOGIN';
 const LOGOUT: string = 'LOGOUT';
 
-const loginReducer = (state: string, action?: any) => {
+type action = {
+  type: string;
+}
+
+const loginReducer = (state: string, action?: action) => {
   if (state === undefined) {
     return { isLogin: false };
   }

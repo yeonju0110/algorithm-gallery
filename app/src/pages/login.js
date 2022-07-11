@@ -27,21 +27,6 @@ function Login() {
     else {
       setMessage("");
 
-
-      // const login = async () => {
-      //   const { login_data } = await axios({
-      //     method: 'post',
-      //     url: `${process.env.REACT_APP_ALG_SERVER}/user/signin`,
-      //     data: {
-      //       "userid": id,
-      //       "password": password
-      //     }
-      //   });
-      //   console.log(login_data);
-      // }
-      // login();
-
-
       fetch(`${process.env.REACT_APP_ALG_SERVER}/user/signin`, {
         method: "POST",
         // credentials: "include",
@@ -60,6 +45,10 @@ function Login() {
               const data = await response.json();
               localStorage.setItem('accessToken', data.token.accessToken);
               localStorage.setItem('refreshToken', data.token.refreshToken);
+
+              if (data.user.admin === true) {
+                localStorage.setItem('admin', true);
+              }
             }
             makeData();
 
@@ -73,22 +62,6 @@ function Login() {
         .catch((error) => console.log(error.message));
     }
   }
-
-  useEffect(() => {
-    // async function fetchData() {
-    //   try {
-    //     const response = await axios.get(`${process.env.REACT_APP_ALG_SERVER}/users/check`);
-    //     if (response.status == 200) {
-    //       router.push("/");
-    //     }
-    //   }
-    //   catch (e) {
-    //     console.error(e);
-    //   }
-    // }
-    // fetchData();
-
-  }, []);
 
 
   return (
